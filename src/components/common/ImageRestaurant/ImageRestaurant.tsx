@@ -14,7 +14,7 @@ const ImageRestaurant = () => {
     <div className="grid grid-cols-3 gap-4">
       {images.map((image, index) => (
         <div key={index} className="flex justify-center items-center">
-          <img src={image} alt={`Imagen ${index + 1}`} className="w-full h-[450px] object-cover rounded-3xl" />
+          <img src={image} alt={`Imagen ${index + 1}`} className="w-full h-[10rem] sm:h-[450px] object-cover rounded-3xl" />
         </div>
       ))}
     </div>
