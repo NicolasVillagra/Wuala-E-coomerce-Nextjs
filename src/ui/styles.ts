@@ -1,0 +1,1 @@
+export const container = "w-full p-6 mt-2"
