@@ -13,7 +13,7 @@ import ReviewSection from "@/components/common/Review/ReviewSection";
 import Nav from "@/components/layout/Header/Nav";
 import Image from "next/image";
 
-const AnimatedComponent = ({ children }) => {
+const AnimatedComponent = ({ children }:any) => {
   const { ref, inView } = useInView({
     threshold: 0.2, // El componente debe estar al menos 20% visible
     triggerOnce: true, // La animación se dispara solo una vez
