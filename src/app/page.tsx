@@ -10,8 +10,7 @@ import ImageRestaurant from "@/components/common/ImageRestaurant/ImageRestaurant
 import Map from "@/components/common/Map/Map";
 import RestaurantInfo from "@/components/common/RestaurantInfo/RestaurantInfo";
 import ReviewSection from "@/components/common/Review/ReviewSection";
-import Nav from "@/components/layout/Header/Nav";
-import Image from "next/image";
+
 
 const AnimatedComponent = ({ children }:any) => {
   const { ref, inView } = useInView({
