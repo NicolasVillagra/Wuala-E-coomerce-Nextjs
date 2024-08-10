@@ -61,7 +61,7 @@ export default function Reserve() {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="max-w-md w-full p-4 shadow-lg shadow-indigo-500/40 bg-white rounded-lg shadow-md">
+      <div className="max-w-md w-full p-4 shadow-lg shadow-indigo-500/40 bg-white rounded-lg">
         <h1 className="text-2xl font-bold mb-4">Reservar una Mesa</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
