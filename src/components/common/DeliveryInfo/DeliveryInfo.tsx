@@ -28,16 +28,17 @@ const DeliveryInfo = () => {
             text:"Local Favorites",
             image:"https://images.unsplash.com/photo-1621241441637-ea2d3f59db32?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         }
-    ]
+    ];
+
   return (
     <div className="w-full h-full">
       <section className={styles.container}>
         <div className={styles.wave}></div>
       </section>
-      <div className="bg-black w-full h-full">
-        <h1 className="text-white text-5xl font-bold text-center">Introducing Our Services</h1>
-        <div>
-            {data.map((e,index)=>(
+      <div className="bg-black w-full h-full p-10">
+        <h1 className="text-white text-5xl font-bold text-center mb-10">Introducing Our Services</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {data.map((e, index) => (
                 <Card key={index} image={e.image} text={e.text} />
             ))}
         </div>
