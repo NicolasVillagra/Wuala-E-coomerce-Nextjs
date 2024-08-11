@@ -1,28 +1,38 @@
-import { MongoClient, Db, MongoClientOptions } from 'mongodb';
+import mongoose from 'mongoose';
 
-const uri = process.env.MONGODB_URI as string;
-const options: MongoClientOptions = {};
+declare global {
+  // eslint-disable-next-line no-var, @typescript-eslint/no-explicit-any
+  var mongoose: any; // This must be a `var` and not a `let / const`
+} 
+const MONGODB_URI = process.env.MONGODB_URI as string;
 
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
-
-if (!uri) {
-  throw new Error('Please add your Mongo URI to .env.local');
+if (!MONGODB_URI) {
+  throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
 
-if (process.env.NODE_ENV === 'development') {
-  if (!(global as any)._mongoClientPromise) {
-    client = new MongoClient(uri, options);
-    (global as any)._mongoClientPromise = client.connect();
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+async function connectToDatabase() {
+  if (cached.conn) {
+    return cached.conn;
   }
-  clientPromise = (global as any)._mongoClientPromise;
-} else {
-  client = new MongoClient(uri, options);
-  clientPromise = client.connect();
+
+  if (!cached.promise) {
+    const opts = {
+      bufferCommands: false,
+    };
+
+    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+      return mongoose;
+    });
+  }
+
+  cached.conn = await cached.promise;
+  return cached.conn;
 }
 
-export async function connectToDatabase(): Promise<{ client: MongoClient; db: Db }> {
-  const client = await clientPromise;
-  const db = client.db(process.env.DB_NAME);
-  return { client, db };
-}
+export default connectToDatabase;
