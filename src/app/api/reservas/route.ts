@@ -5,6 +5,7 @@ import connectToDatabase from '@/services/mongodb';
 import Reserva, { IReserva } from '@/models/Reserva';
 
 // Función para manejar las solicitudes GET
+
 export async function GET(req: NextRequest) {
   await connectToDatabase();
 
